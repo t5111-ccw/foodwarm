@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>吃貨哲學家：一句入魂工作坊（實踐版）</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Chosen Palette: Savory Wisdom 2.0 (Deep Teal, Warm Sand, Soft Orange) -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'foodie-bg': '#F7F3E8',
+                        'foodie-teal': '#115E59',
+                        'foodie-orange': '#F97316',
+                        'foodie-text': '#1F2937',
+                        'foodie-card': '#FFFFFF',
+                        'foodie-support': '#FCD34D', /* Yellow/Amber for psychological support */
+                    },
+                    fontFamily: {
+                        sans: ['Noto Sans TC', 'Microsoft JhengHei', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Chart Container Styles as per requirements */
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px; /* Base height */
+            max-height: 400px;
+        }
+
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+
+        /* Smooth transitions for interactive elements */
+        .transition-all-300 {
+            transition: all 0.3s ease-in-out;
+        }
+
+        .food-btn.active {
+            background-color: #115E59;
+            color: white;
+            border-color: #115E59;
+            transform: translateX(5px);
+        }
+    </style>
+</head>
+<body class="bg-foodie-bg text-foodie-text font-sans selection:bg-foodie-orange selection:text-white">
+
+    <!-- Navbar -->
+    <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md shadow-lg border-b border-foodie-teal/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <span class="text-3xl mr-2">💡</span>
+                    <h1 class="text-xl font-extrabold text-foodie-teal tracking-wider">
+                        吃貨哲學家
+                        <span class="text-foodie-orange text-sm font-normal ml-2">一句入魂工作坊</span>
+                    </h1>
+                </div>
+                <div class="hidden md:flex space-x-6 text-sm">
+                    <a href="#examples" class="text-gray-600 hover:text-foodie-teal transition-colors font-semibold">典範案例</a>
+                    <a href="#workshop" class="text-foodie-orange hover:text-foodie-teal transition-colors font-bold border-b-2 border-foodie-orange">實作煉金</a>
+                    <a href="#analysis" class="text-gray-600 hover:text-foodie-teal transition-colors font-semibold">評分解讀</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero & Methodology Section -->
+    <section id="methodology" class="pt-16 pb-12 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4">
+                    從味蕾到靈魂：<span class="text-foodie-teal">創作思考四部曲</span>
+                </h2>
+                <p class="max-w-3xl mx-auto text-lg text-gray-600">
+                    本課程旨在訓練您將日常美食的**物理特徵 (A)** 轉化為具備**心理學意義的療癒聯想 (B)**，再經由**完整論述 (C)**，最終**精煉成一句不帶說教、充滿同理心的金句 (D)**。
+                </p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                <!-- Step 1 -->
+                <div class="bg-foodie-bg p-4 rounded-xl shadow-md border-t-4 border-foodie-teal/50">
+                    <div class="text-3xl mb-2 text-foodie-teal">A</div>
+                    <h4 class="text-lg font-bold mb-1">步驟一：物理特徵</h4>
+                    <p class="text-xs text-gray-600">觀察食物的形狀、做法、口感或吃法。</p>
+                </div>
+
+                <!-- Step 2 -->
+                 <div class="bg-foodie-bg p-4 rounded-xl shadow-md border-t-4 border-foodie-orange/50">
+                    <div class="text-3xl mb-2 text-foodie-orange">B</div>
+                    <h4 class="text-lg font-bold mb-1">步驟二：人生聯想</h4>
+                    <p class="text-xs text-gray-600">思考 A 隱含的**同理/接納/情緒出口**。</p>
+                </div>
+
+                <!-- Step 3 (C: Long View/觀點產出) -->
+                <div class="bg-foodie-bg p-4 rounded-xl shadow-md border-t-4 border-foodie-teal">
+                    <div class="text-3xl mb-2 text-foodie-teal">C</div>
+                    <h4 class="text-lg font-bold mb-1">步驟三：觀點產出</h4>
+                    <p class="text-xs text-gray-600">將 A→B 寫成一句**完整的**思辨句。</p>
+                </div>
+                
+                <!-- Step 4 (D: Final Quote/金句入魂) -->
+                <div class="bg-foodie-bg p-4 rounded-xl shadow-md border-t-4 border-foodie-orange">
+                    <div class="text-3xl mb-2 text-foodie-orange">D</div>
+                    <h4 class="text-lg font-bold mb-1">步驟四：金句入魂</h4>
+                    <p class="text-xs text-gray-600">口語化、精煉、**不帶說教**的最終金句。</p>
+                </div>
+            
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Examples Section -->
+    <section id="examples" class="py-16 bg-foodie-bg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-12">
+                <h3 class="text-3xl font-bold text-foodie-teal mb-4">典範案例賞析</h3>
+                <p class="text-gray-600">
+                    以下展示了具療癒感的範例。
+                </p>
+            </div>
+
+            <div class="flex flex-col md:flex-row gap-8">
+                <!-- Left Column: Menu Selector -->
+                <div class="w-full md:w-1/3 flex flex-col gap-3" id="menu-buttons">
+                    <!-- Buttons injected by JS -->
+                </div>
+
+                <!-- Right Column: Detail Card -->
+                <div class="w-full md:w-2/3">
+                    <div id="detail-card" class="bg-white rounded-2xl p-8 border border-foodie-teal/10 shadow-xl h-full flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center gap-4 mb-6 border-b pb-4">
+                                <span id="detail-icon" class="text-5xl"></span>
+                                <div>
+                                    <h4 id="detail-title" class="text-2xl font-bold text-gray-900"></h4>
+                                    <span id="detail-score" class="inline-block mt-1 bg-foodie-orange text-white text-xs px-3 py-1 rounded-full font-semibold"></span>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
+                                <div class="bg-foodie-bg p-4 rounded-lg border-l-4 border-foodie-teal/70">
+                                    <div class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-1">A：物理特徵</div>
+                                    <div id="detail-feature" class="text-gray-700 font-medium"></div>
+                                </div>
+                                <div class="bg-foodie-bg p-4 rounded-lg border-l-4 border-foodie-orange/70">
+                                    <div class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-1">B：人生聯想 (核心哲理)</div>
+                                    <div id="detail-b-association" class="text-gray-700 font-medium"></div>
+                                </div>
+                            </div>
+
+                            <div class="mb-6 bg-teal-50 p-6 rounded-lg border-2 border-foodie-teal/20">
+                                <div class="text-xs font-bold text-foodie-teal uppercase tracking-wider mb-2">C：完整論述 (觀點產出)</div>
+                                <blockquote class="text-base italic text-gray-700 leading-relaxed">
+                                    <span id="detail-c-view"></span>
+                                </blockquote>
+                            </div>
+                            
+                            <div class="mb-6 bg-orange-50 p-6 rounded-lg border-2 border-foodie-orange/20">
+                                <div class="text-xs font-bold text-foodie-orange uppercase tracking-wider mb-2">D：最終金句 (不帶說教的精煉)</div>
+                                <blockquote class="text-xl italic text-gray-900 leading-relaxed font-bold">
+                                    <span id="detail-d-quote"></span>
+                                </blockquote>
+                            </div>
+                        </div>
+
+                        <div class="bg-gray-50 p-4 rounded-lg mt-4">
+                            <div class="text-xs font-bold text-foodie-teal uppercase tracking-wider mb-1">典範解析 (關鍵洞察)</div>
+                            <p id="detail-feedback" class="text-sm text-gray-600"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Workshop & Generator Section -->
+    <section id="workshop" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-12">
+                <h3 class="text-3xl font-bold text-foodie-teal mb-4">🍽️ 哲學家實作區：您的金句煉金術 (A→B→C→D)</h3>
+                <p class="text-gray-600">
+                    請依序完成您的四個思考步驟，從抽象聯想到觀點，再到極致精煉。
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- Left: Workshop Inputs (Four Steps) -->
+                <div class="space-y-6">
+                     <!-- 學生姓名輸入欄位 (加粗邊框，更顯眼) -->
+                    <div class="bg-foodie-support/20 p-4 rounded-xl border-2 border-foodie-orange/50">
+                        <label for="studentName" class="block text-sm font-bold text-foodie-text mb-1">✍️ 學生姓名</label>
+                        <input type="text" id="studentName" placeholder="例如：王小明 (這是署名的關鍵喔！)" class="w-full p-3 border border-foodie-orange/50 rounded-lg focus:ring-foodie-orange focus:border-foodie-orange font-semibold">
+                    </div>
+                    <div>
+                        <label for="foodName" class="block text-sm font-medium text-gray-700 mb-1">1. 您選擇的美食是什麼？ (請填入名稱與 Emoji)</label>
+                        <input type="text" id="foodName" value="🍣手捲" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-foodie-teal focus:border-foodie-teal">
+                    </div>
+
+                    <div>
+                        <label for="featureA" class="block text-sm font-medium text-gray-700 mb-1">A. 步驟一：物理特徵 (A) 描述：(食物的形狀、作法、吃法、口感)</label>
+                        <textarea id="featureA" rows="2" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-foodie-teal focus:border-foodie-teal">海苔必須馬上吃，放久了會軟掉。食材層次豐富。</textarea>
+                    </div>
+
+                    <div>
+                        <label for="associationB" class="block text-sm font-medium text-foodie-orange mb-1">B. 步驟二：人生聯想 (B) 關鍵詞：</label>
+                        <textarea id="associationB" rows="2" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-foodie-orange focus:border-foodie-orange">把握當下、時機</textarea>
+                    </div>
+
+                    <div class="border-t pt-4 border-foodie-teal/20">
+                        <label for="longViewC" class="block text-sm font-medium text-foodie-teal mb-1">
+                            C. 步驟三：觀點產出 (A→B 完整論述)
+                            <span class="text-xs text-gray-500 font-normal ml-2"> (寫出您的哲理長版思辨句)</span>
+                        </label>
+                        <textarea id="longViewC" rows="3" class="w-full p-3 border border-foodie-teal rounded-lg focus:ring-foodie-teal focus:border-foodie-teal">海苔剛烤好是脆的，就像人生中的某些時機，錯過了就會失去風味。重要的事，必須趁著「脆度」還在時，馬上行動。</textarea>
+                    </div>
+
+                    <div class="border-t pt-6 border-foodie-teal/20">
+                        <label for="goldenQuote" class="block text-sm font-medium text-foodie-orange mb-1">
+                            D. 步驟四：金句入魂 (口語修飾 / 最終交付目標) 
+                            <span id="wordCountHint" class="text-xs text-red-500 font-normal ml-2"> (目標 20 字以內為最佳 | 目前：0 字)</span>
+                        </label>
+                        <textarea id="goldenQuote" rows="3" class="w-full p-3 border-2 border-foodie-orange rounded-lg font-bold text-lg focus:ring-foodie-orange focus:border-foodie-orange shadow-md">人生重要的事，要趁著海苔還脆時，立刻做。</textarea>
+                    </div>
+
+                    <!-- Scoring Button and Loading Indicator -->
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button id="scoreButton" onclick="scoreQuote()" class="w-full sm:w-2/3 py-3 bg-foodie-orange text-white font-bold rounded-lg shadow-lg hover:bg-orange-600 transition-all-300 disabled:opacity-50 flex items-center justify-center">
+                            <svg id="loadingSpinner" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                            </svg>
+                            AI 智慧評分與建議
+                        </button>
+                         <!-- Export History Button -->
+                        <button id="exportButton" onclick="exportHistory()" class="w-full sm:w-1/3 py-3 bg-foodie-teal text-white font-bold rounded-lg shadow-lg hover:bg-foodie-teal/90 transition-all-300 disabled:opacity-50 flex items-center justify-center">
+                            📂 匯出作品歷程 
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Right: Golden Sentence Card Preview / Scoring Result -->
+                <div class="flex flex-col gap-6">
+                    <!-- Preview Card -->
+                    <div id="quoteCardPreview" class="w-full max-w-md bg-white p-8 rounded-2xl shadow-2xl border-4 border-foodie-teal/50 relative overflow-hidden transition-all-300">
+                        <div class="absolute inset-0 bg-foodie-bg opacity-30 pointer-events-none"></div>
+                        <div class="relative z-10">
+                            <div class="text-2xl font-bold text-foodie-teal mb-4 border-b pb-2 border-foodie-teal/20" id="cardFoodTitle">🍿爆米香</div>
+                            <blockquote class="text-2xl italic font-serif text-gray-900 mb-6 leading-relaxed">
+                                <span class="text-5xl text-foodie-orange opacity-70 mr-1 align-top">“</span>
+                                <span id="cardQuoteContent">用力爆，才會香。</span>
+                            </blockquote>
+                            <!-- footer text will be updated by JS -->
+                            <div class="text-right text-sm text-gray-500 pt-4 border-t border-foodie-orange/20" id="cardQuoteFooter">
+                                ── 來自吃貨哲學家
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Scoring Result Area -->
+                    <div id="scoreResultArea" class="bg-white p-6 rounded-2xl shadow-xl border-2 border-foodie-orange/50 hidden">
+                        <h4 class="text-xl font-bold text-foodie-orange mb-4 flex justify-between items-center">
+                            AI 評分報告
+                            <span id="finalScore" class="text-3xl font-extrabold text-foodie-teal">--/15</span>
+                        </h4>
+
+                        <!-- NEW: Psychological Support Block -->
+                        <div class="chart-container mb-6">
+                            <canvas id="studentRubricChart"></canvas>
+                        </div>
+                         <div class="bg-foodie-support/20 p-4 rounded-lg border-2 border-foodie-support mb-6">
+                            <div class="text-sm font-bold text-foodie-teal uppercase tracking-wider mb-2 flex items-center gap-2">
+                                💖 溫暖支持 (心理諮詢師)
+                            </div>
+                            <p id="psychologicalSupport" class="text-sm text-gray-700 leading-relaxed italic">AI 正在生成溫暖支持語...</p>
+                        </div>
+                        
+
+                        
+                        <div class="bg-foodie-bg p-4 rounded-lg">
+                            <div class="text-sm font-bold text-foodie-teal uppercase tracking-wider mb-2">精進建議 (AI 教師 / 技術面)</div>
+                            <p id="aiFeedback" class="text-sm text-gray-700 leading-relaxed"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Analysis Section (Charts) - Remains the same -->
+    <section id="analysis" class="py-16 bg-foodie-bg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-12">
+                <h3 class="text-3xl font-bold text-foodie-teal mb-4">📈 評分維度與數據解讀：邁向卓越</h3>
+                <p class="text-gray-600 mb-8">
+                    高分的金句必須同時在三個核心維度上表現出色。請參考以下圖表，理解評分尺規中「聯想」、「觀點」與「口語」的平衡之道。
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                
+                <!-- Chart 1: Rubric Radar Chart (Static Standard) -->
+                <div class="bg-white p-6 rounded-xl shadow-lg">
+                    <h4 class="text-lg font-bold text-gray-800 mb-4 border-l-4 border-foodie-teal pl-3">核心評量尺規模型 (滿分 5)</h4>
+                    <div class="chart-container">
+                        <canvas id="rubricChart"></canvas>
+                    </div>
+                    <div class="mt-4 text-xs text-gray-600">
+                        <p>藍色區域為「卓越」（5分）標準；黃色區域為「達標」（3分）標準。追求三角形的飽滿與平衡。</p>
+                    </div>
+                </div>
+
+                <!-- Chart 2: Example Scores Bar Chart -->
+                <div class="bg-white p-6 rounded-xl shadow-lg">
+                    <h4 class="text-lg font-bold text-gray-800 mb-4 border-l-4 border-foodie-orange pl-3">案例總分比較 (滿分 15)</h4>
+                    <div class="chart-container">
+                        <canvas id="scoresChart"></canvas>
+                    </div>
+                     <div class="mt-4 text-xs text-gray-600">
+                        <p>所有範例皆為療癒哲學典範，因在所有維度上皆達 5 分標準，故獲得典範滿分 (15分)。</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-foodie-teal text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-2xl font-bold mb-2">吃貨哲學家</h2>
+            <p class="mb-6 opacity-80">感謝您的專注。請繼續用文字探索生命、滋養心靈。</p>
+            <p class="text-xs opacity-60">© 來去踅基隆‧國立基隆商工</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // --- Global Config and Data ---
+        const API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=";
+        const API_KEY = ""; // Placeholder, handled by Canvas environment
+        const MAX_RETRIES = 3;
+        const RUBRIC_LABELS = ['聯想精準度 (A→B)', '觀點穿透力 (A/B轉化)', '口語精煉度 (D修飾)']; 
+        const HISTORY_KEY = 'foodiePhilosopherHistory'; // localStorage key for history
+
+        // 更新後的範例資料，全部以 15 分的典範標準呈現，強調療癒與同理
+        const examplesData = [
+            { id: 'pancake', title: '🍳 蔥油餅加蛋', icon: '🍳', feature: '增加蛋白質，為自己加一份心意', b_association: '自我照顧、愛自己', c_view: '一塊餅不夠，就幫自己加顆蛋。真正的自我肯定，是從最簡單的行動開始的。', d_quote: '日子再簡單，也別忘了幫自己「加料」。', feedback: 'A(增加蛋白質)→B(自我照顧)完美轉化。金句將「加料」一詞雙關，充滿療癒與行動力，是強大的心理支持。', scores: { accuracy: 5, penetration: 5, refinement: 5, total: 15 } },
+            { id: 'chicken', title: '🍗 炸雞脖子', icon: '🍗', feature: '肉很少，需要專注啃食，享受獨特的過程', b_association: '享受過程、品味獨特、接納自我選擇', c_view: '雖然肉不多，但專注啃的過程本身就是一種享受。這是一種主觀的快樂，不需要被他人理解。', d_quote: '就算全世界都嫌棄，但我就是喜歡你。', feedback: '觀點直指「主觀價值」與「對自我選擇的接納」，給予讀者強大的情感支持，完全不帶說教。', scores: { accuracy: 5, penetration: 5, refinement: 5, total: 15 } },
+           // { id: 'oyster', title: '🦪 蚵仔煎', icon: '🦪', feature: '青菜、蚵仔、蛋與粉漿糊成一團的混亂狀態', b_association: '接納混亂、擁抱不完美', c_view: '最美味的人生，往往不是形狀最完美的那個。那些看似「混亂」的元素，正是讓風味更豐富的基底。', d_quote: '人生沒必要有標準形狀，混在一起，最對味。', feedback: '聯想精準抓取「混亂」連結「不完美人生」，觀點是「接納當下狀態」，提供情緒出口，極具啟發性。', scores: { accuracy: 5, penetration: 5, refinement: 5, total: 15 } },
+           // { id: 'sourfish', title: '🌶️ 酸菜魚', icon: '🌶️', feature: '又酸又辣，必須忍受刺激，一邊流汗一邊享受，痛與爽共存', b_association: '複雜情緒、痛並快樂著、成長的代價', c_view: '最難忘的人生經歷，都不是只有單純的快樂。唯有接納那份酸、辣的刺激，才能體驗到魚肉的極致滑順與滿足。', d_quote: '人生最棒的滋味，就是一邊流淚，一邊說爽。', feedback: '成功轉化「痛與爽並存」的複雜哲理，為讀者提供了強烈的情緒出口，允許他們同時感到痛苦與滿足，精煉度高。', scores: { accuracy: 5, penetration: 5, refinement: 5, total: 15 } }
+            { id: 'fries', title: '🍟 梅甘地瓜條', icon: '🍟', feature: '酸鹹、香甜', b_association: '反差、點綴', c_view: '酸鹹的反差就像生活的小意外，反而能凸顯出原本的甜美。', d_quote: '生活有點小意外，反而更甜美。', feedback: 'A(酸鹹)→B(反差)的聯想精準，並成功轉化為C的觀點。「小意外」的比喻貼切，讓平凡的「甜」更出色。', scores: { accuracy: 5, penetration: 4, refinement: 5, total: 14 } },
+            { id: 'beef', title: '🍜 牛肉麵', icon: '🍜', feature: '肉夠豪邁大塊', b_association: '實在、過癮', c_view: '料給得很足才能真的飽。', d_quote: '對自己大方，就是最紮實過癮的滿足。', feedback: '從「大塊肉」聯想到「對自己大方」，直接且有力。聯想精準但觀點略為常見，但精煉度極高。', scores: { accuracy: 4, penetration: 4, refinement: 5, total: 13 } }
+        
+        ];
+
+        let studentRubricChartInstance = null;
+        let historyLog = []; // Global array to store history
+
+        // --- UPDATED: The core rubric, focusing heavily on NOT being preachy ---
+        const RUBRIC_TEXT = `
+            你是一位同時具備**專業國文教師的嚴謹**與**心理輔導師的同理心**的 AI。
+            你的目標是根據以下尺規提供專業的技術評分，**隨後必須提供一個獨立的、充滿同理心的溫暖支持段落**。
+
+            # 評量尺規 (滿分 5 分/維度)
+
+            ## 1. 聯想精準度 (A→B)
+            - 5分 (卓越): 完美抓取食物的獨特物理特徵(A)或情境/定位，並以此作為哲理的「喻體」，連結人生聯想(B)新穎、貼切，從微小特徵洞察出深刻、非顯而易見的療癒哲理。
+            - 3分 (達標): A與B邏輯關聯明確，能表達一般性的感受或狀態。
+            - 1分 (待改進): A與B關聯薄弱，或聯想流於表面且俗套。
+
+            ## 2. 觀點穿透力 (A/B 轉化 / 步驟三)
+            - 5分 (卓越): 觀點(步驟三 C)能提供「頓悟感」(Aha! moment)，引發共鳴、療癒人心，或提供「情緒出口」與「新思考角度」。**（絕不能是說教、命令或要求他人努力的語氣。）**
+            - 3分 (達標): 觀點(步驟三 C)是常見的勵志語或心得，缺乏個人獨特見解。
+            - 1分 (待改進): 僅為A或B的簡單陳述，無觀點。
+
+            ## 3. 口語精煉度 (D定稿修飾 / 步驟四)
+            --- 評分邏輯：目標 20 字以內，需同時評估口語化程度與字數 (包含標點符號) ---
+            - 5分 (卓越): 
+                1. 句子長度嚴格符合 **20 字以內**。
+                2. 語言親切、口語化、有節奏感，如同朋友聊天。用字精準，態度鮮明，**絕不帶說教或命令意味**。
+            - 3分 (達標):
+                1. 句子長度在 **21~30 字之間**。
+                2. 句型結構完整，意思清晰，且口語化程度尚可。
+            - 1分 (待改進): 
+                1. 句子長度 **31 字以上**。
+                2. 語句不通順，或用字生硬，態度帶有說教感。
+        `;
+
+        // Function to count Chinese characters (including punctuation)
+        function countChineseWords(text) {
+            return text.length;
+        }
+
+        async function fetchWithRetry(url, payload, retries = MAX_RETRIES) {
+            for (let i = 0; i < retries; i++) {
+                try {
+                    const response = await fetch(url, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (response.ok) {
+                        return response.json();
+                    } else if (response.status === 429 && i < retries - 1) {
+                        const delay = Math.pow(2, i) * 1000 + Math.random() * 1000;
+                        await new Promise(resolve => setTimeout(resolve, delay));
+                        console.warn(`Rate limit hit. Retrying in ${delay}ms...`);
+                    } else {
+                        throw new Error(`API request failed with status ${response.status}`);
+                    }
+                } catch (error) {
+                    if (i === retries - 1) throw error;
+                    const delay = Math.pow(2, i) * 1000 + Math.random() * 1000;
+                    await new Promise(resolve => setTimeout(resolve, delay));
+                    console.error(`Fetch failed. Retrying in ${delay}ms...`);
+                }
+            }
+        }
+
+        async function scoreQuote() {
+            const foodName = document.getElementById('foodName').value.trim();
+            const featureA = document.getElementById('featureA').value.trim();
+            const associationB = document.getElementById('associationB').value.trim();
+            const longViewC = document.getElementById('longViewC').value.trim();
+            const goldenQuote = document.getElementById('goldenQuote').value.trim();
+
+            if (!foodName || !featureA || !associationB || !longViewC || !goldenQuote) {
+                showTemporaryMessage('請先填寫所有四個步驟的內容，才能進行評分！', 'error');
+                return;
+            }
+
+            const scoreButton = document.getElementById('scoreButton');
+            const loadingSpinner = document.getElementById('loadingSpinner');
+            const scoreResultArea = document.getElementById('scoreResultArea');
+            const psychologicalSupport = document.getElementById('psychologicalSupport');
+            
+            // Set loading state (FIX: Added null checks)
+            if (scoreButton) {
+                scoreButton.disabled = true;
+                scoreButton.textContent = 'AI 正在分析中...';
+            }
+            if (loadingSpinner) {
+                loadingSpinner.classList.remove('hidden');
+            }
+            if (scoreResultArea) {
+                scoreResultArea.classList.add('hidden'); // Hide previous result
+            }
+            // Clear previous support message
+            if (psychologicalSupport) {
+                 psychologicalSupport.textContent = 'AI 正在生成溫暖支持語...';
+            }
+
+            const wordCount = countChineseWords(goldenQuote);
+
+            const userQuery = `
+                請你根據我提供的「吃貨哲學家」評量尺規，評估以下學生的創作：
+                
+                --- 創作流程與內容 ---
+                美食名稱: ${foodName}
+                步驟一 (物理特徵 A): ${featureA}
+                **步驟二 (人生聯想 B):** ${associationB}
+                **步驟三 (觀點產出/完整論述 C):** ${longViewC}  
+                **步驟四 (最終金句/精煉 D):** ${goldenQuote} 
+                ***步驟四的金句字數 (包含標點符號): ${wordCount} 字***
+
+                請以步驟四的「最終金句」(D) 作為最終口語精煉度的評分對象。但請參考步驟一(A)與步驟二(B)的關係，來判斷「聯想精準度」，並參考步驟三(C)來判斷「觀點穿透力」。**特別注意，觀點穿透力(2)與口語精煉度(3)的5分標準，都強調不能有說教或命令意味。**
+            `;
+
+            // --- UPDATED JSON SCHEMA for Dual Feedback ---
+            const payload = {
+                contents: [{ parts: [{ text: userQuery }] }],
+                systemInstruction: { parts: [{ text: RUBRIC_TEXT }] },
+                generationConfig: {
+                    responseMimeType: "application/json",
+                    responseSchema: {
+                        type: "OBJECT",
+                        properties: {
+                            scores: {
+                                type: "OBJECT",
+                                properties: {
+                                    accuracy: { type: "INTEGER", description: "聯想精準度 (A→B) 1到5分。" },
+                                    penetration: { type: "INTEGER", description: "觀點穿透力 (A/B轉化，基於C) 1到5分，必須考慮是否提供療癒、情緒出口，且不帶說教。" },
+                                    refinement: { type: "INTEGER", description: "口語精煉度 (D修飾) 1到5分，必須嚴格考慮步驟四金句的字數與口語化程度，且不帶說教。" }
+                                },
+                                required: ["accuracy", "penetration", "refinement"]
+                            },
+                            totalScore: { type: "INTEGER", description: "三個維度的總分，1到15分。" },
+                            detailedFeedback: { type: "STRING", description: "一句中文的、具體、鼓勵性且提供明確改進方向的技術建議。如果字數不符合 20 字以內的要求，必須在建議中提及字數問題和對應的扣分原因。" },
+                            psychologicalSupport: { type: "STRING", description: "獨立的、溫暖的中文支持段落，約50-80字，以心理諮詢師的親切語氣，專注於作品所傳達的情緒、態度和療癒力，不提分數或技術細節。" }
+                        },
+                        required: ["scores", "totalScore", "detailedFeedback", "psychologicalSupport"]
+                    }
+                }
+            };
+            
+            try {
+                const result = await fetchWithRetry(API_URL + API_KEY, payload);
+
+                const jsonText = result?.candidates?.[0]?.content?.parts?.[0]?.text;
+                if (!jsonText) throw new Error("API response text is empty.");
+
+                const parsedResult = JSON.parse(jsonText);
+                renderScore(parsedResult);
+                
+                // Save to history after successful scoring
+                saveHistory(parsedResult);
+                showTemporaryMessage('評分成功！本次結果已自動儲存到作品歷程中。', 'info');
+
+            } catch (error) {
+                console.error("Scoring failed:", error);
+                if (document.getElementById('aiFeedback')) {
+                    document.getElementById('aiFeedback').textContent = '評分失敗，請檢查輸入內容後再試一次。錯誤：' + error.message;
+                }
+                if (psychologicalSupport) {
+                     psychologicalSupport.textContent = '連線錯誤，無法獲取支持語。';
+                }
+                if (scoreResultArea) {
+                    scoreResultArea.classList.remove('hidden');
+                }
+                showTemporaryMessage('評分連線失敗，請稍後再試。', 'error');
+
+            } finally {
+                // Reset button state
+                if (scoreButton) {
+                    scoreButton.disabled = false;
+                    scoreButton.textContent = 'AI 智慧評分與建議';
+                }
+                if (loadingSpinner) {
+                    loadingSpinner.classList.add('hidden');
+                }
+            }
+        }
+
+        function renderScore(scoreData) {
+            const scores = scoreData.scores;
+            const totalScore = scoreData.totalScore;
+            const feedback = scoreData.detailedFeedback;
+            const support = scoreData.psychologicalSupport; // NEW FIELD
+            
+            // Update UI elements
+            document.getElementById('finalScore').textContent = `${totalScore}/15`;
+            document.getElementById('aiFeedback').textContent = feedback;
+            document.getElementById('psychologicalSupport').textContent = support; // NEW UPDATE
+            document.getElementById('scoreResultArea').classList.remove('hidden');
+
+            // Render/Update the student's radar chart
+            if (studentRubricChartInstance) {
+                studentRubricChartInstance.destroy();
+            }
+
+            const ctxStudentRubric = document.getElementById('studentRubricChart').getContext('2d');
+            
+            studentRubricChartInstance = new Chart(ctxStudentRubric, {
+                type: 'radar',
+                data: {
+                    labels: RUBRIC_LABELS,
+                    datasets: [{
+                        label: '您的分數',
+                        data: [scores.accuracy, scores.penetration, scores.refinement],
+                        fill: true,
+                        backgroundColor: 'rgba(249, 115, 22, 0.4)', // Soft Orange
+                        borderColor: 'rgb(249, 115, 22)',
+                        pointBackgroundColor: 'rgb(249, 115, 22)',
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: 'rgb(249, 115, 22)'
+                    },
+                    {
+                        label: '卓越標準 (5分)',
+                        data: [5, 5, 5],
+                        fill: false,
+                        borderColor: 'rgba(17, 94, 89, 0.5)', // Deep Teal
+                        borderDash: [5, 5],
+                        pointRadius: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    elements: { line: { borderWidth: 3 } },
+                    scales: {
+                        r: {
+                            angleLines: { display: true },
+                            suggestedMin: 0,
+                            suggestedMax: 5,
+                            ticks: { stepSize: 1, backdropColor: 'transparent' }
+                        }
+                    },
+                    plugins: {
+                        legend: { position: 'bottom' },
+                        tooltip: {
+                             callbacks: {
+                                title: function(tooltipItems) { return tooltipItems[0].label; }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // --- History and Export Logic ---
+
+        function loadHistory() {
+            try {
+                const historyString = localStorage.getItem(HISTORY_KEY);
+                if (historyString) {
+                    historyLog = JSON.parse(historyString);
+                }
+            } catch (e) {
+                console.error("無法載入作品歷程:", e);
+                historyLog = []; // Reset on error
+            }
+        }
+
+        function saveHistory(scoreData) {
+            const timestamp = new Date().toLocaleString('zh-TW', {
+                year: 'numeric', month: '2-digit', day: '2-digit', 
+                hour: '2-digit', minute: '2-digit', second: '2-digit'
+            });
+
+            const currentEntry = {
+                timestamp: timestamp,
+                foodName: document.getElementById('foodName').value.trim(),
+                featureA: document.getElementById('featureA').value.trim(),
+                associationB: document.getElementById('associationB').value.trim(),
+                longViewC: document.getElementById('longViewC').value.trim(),
+                goldenQuote: document.getElementById('goldenQuote').value.trim(),
+                wordCount: countChineseWords(document.getElementById('goldenQuote').value.trim()),
+                score: scoreData.totalScore,
+                scoresDetail: scoreData.scores,
+                feedback: scoreData.detailedFeedback,
+                psychologicalSupport: scoreData.psychologicalSupport // NEW: Save psychological support
+            };
+
+            historyLog.push(currentEntry);
+            localStorage.setItem(HISTORY_KEY, JSON.stringify(historyLog));
+        }
+
+        function exportHistory() {
+            if (historyLog.length === 0) {
+                showTemporaryMessage('目前沒有任何儲存的評分紀錄可供匯出。', 'error');
+                return;
+            }
+            const currentStudentName = document.getElementById('studentName').value.trim() || '未署名';
+            //const header = `# 吃貨哲學家 - 作品歷程匯出報告\n\n匯出時間: ${new Date().toLocaleString('zh-TW')}\n\n`;
+            const header = `# 吃貨哲學家 - 作品歷程匯出報告\n` + 
+                   `學生姓名: ${currentStudentName}\n` + // <-- 學生姓名
+                   `匯出時間: ${new Date().toLocaleString('zh-TW')}\n\n`; // <-- 匯出時間
+            let content = header;
+
+            historyLog.forEach((entry, index) => {
+                const detail = entry.scoresDetail;
+                content += `--- 📝 第 ${index + 1} 次創作與評分紀錄 ( ${entry.timestamp} ) ---\n`;
+                content += `\n## ${entry.foodName}\n`;
+                content += `\n### 💡 創作思考步驟\n`;
+                content += `- **A. 物理特徵:** ${entry.featureA}\n`;
+                content += `- **B. 人生聯想:** ${entry.associationB}\n`;
+                content += `- **C. 觀點產出 (長論述):** ${entry.longViewC}\n`;
+                content += `- **D. 最終金句 (精煉):** **「${entry.goldenQuote}」** (共 ${entry.wordCount} 字)\n`;
+                content += `\n### 📊 AI 評分報告 (總分: ${entry.score}/15)\n`;
+                content += `- **聯想精準度 (A→B):** ${detail.accuracy} / 5\n`;
+                content += `- **觀點穿透力 (A/B轉化):** ${detail.penetration} / 5\n`;
+                content += `- **口語精煉度 (D修飾):** ${detail.refinement} / 5\n`;
+                content += `\n> **💖 溫暖支持 (心理諮詢師):** ${entry.psychologicalSupport}\n`; // NEW: Include support
+                content += `> **💡 技術建議 (AI 教師):** ${entry.feedback}\n\n`;
+            });
+
+            const blob = new Blob([content], { type: 'text/markdown;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `吃貨哲學家_作品歷程_${new Date().toISOString().slice(0, 10)}.md`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            
+            showTemporaryMessage(`成功匯出 ${historyLog.length} 筆紀錄！`, 'info');
+        }
+
+
+        // --- Original JS Logic (Keep unchanged) ---
+
+        // Function to load details
+        function loadExample(index) {
+            const data = examplesData[index];
+            
+            // Update UI content
+            document.getElementById('detail-icon').textContent = data.icon;
+            document.getElementById('detail-title').textContent = data.title.substring(2);
+            document.getElementById('detail-score').textContent = `總分: ${data.scores.total}/15`;
+            document.getElementById('detail-feature').textContent = data.feature;
+            document.getElementById('detail-b-association').textContent = data.b_association;
+            document.getElementById('detail-c-view').textContent = data.c_view;
+            document.getElementById('detail-d-quote').textContent = data.d_quote;
+            document.getElementById('detail-feedback').textContent = data.feedback;
+
+            // Update Active Button State
+            const buttons = document.querySelectorAll('.food-btn');
+            buttons.forEach((btn, i) => {
+                if (i === index) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+        }
+
+        // Initialize First Item
+        window.onload = function() {
+            // Load history from localStorage
+            loadHistory(); 
+
+            // Render Buttons
+            examplesData.forEach((item, index) => {
+                const btn = document.createElement('button');
+                btn.className = `food-btn w-full text-left p-4 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-all-300 flex items-center gap-3 bg-white group ${index === 0 ? 'active' : ''}`;
+                btn.innerHTML = `
+                    <span class="text-2xl group-hover:scale-110 transition-transform">${item.icon}</span>
+                    <div>
+                        <div class="font-bold text-gray-800 group-hover:text-foodie-orange">${item.title.substring(2)}</div>
+                        <div class="text-xs text-gray-400">總分: ${item.scores.total}/15</div>
+                    </div>
+                `;
+                btn.onclick = () => loadExample(index);
+                document.getElementById('menu-buttons').appendChild(btn);
+            });
+            loadExample(0);
+            updateCardPreview();
+            initializeStaticCharts();
+        };
+
+
+        // --- Logic: Workshop Generator (Real-Time Preview) ---
+        const foodNameInput = document.getElementById('foodName');
+        const goldenQuoteInput = document.getElementById('goldenQuote');
+        const cardFoodTitle = document.getElementById('cardFoodTitle');
+        const cardQuoteContent = document.getElementById('cardQuoteContent');
+        const wordCountHint = document.getElementById('wordCountHint');
+        const studentNameInput = document.getElementById('studentName');
+        const cardQuoteFooter = document.getElementById('cardQuoteFooter')
+
+        function updateCardPreview() {
+            // Update text content
+            const foodName = foodNameInput.value.trim().substring(0, 15) || '美食名稱';
+            const quote = goldenQuoteInput.value.trim() || '請在這裡輸入您的哲學金句...';
+            const studentName = studentNameInput.value.trim();
+
+            cardFoodTitle.textContent = foodName;
+            cardQuoteContent.textContent = quote;
+            let footerText = '── 來自吃貨哲學家';
+               if (studentName) {
+              // 如果學生姓名有填寫，則在「吃貨哲學家」後方加上姓名
+              footerText += `・${studentName}`;
+              }
+    cardQuoteFooter.textContent = footerText;
+            // Update word count hint
+            const wordCount = countChineseWords(quote);
+            wordCountHint.textContent = `(目標 20 字以內 | 目前：${wordCount} 字)`;
+            
+            // Change color based on compliance
+            if (wordCount <= 20) {
+                wordCountHint.classList.remove('text-red-500', 'text-yellow-600');
+                wordCountHint.classList.add('text-foodie-teal');
+            } else if (wordCount > 20 && wordCount <= 30) {
+                 wordCountHint.classList.remove('text-red-500', 'text-foodie-teal');
+                wordCountHint.classList.add('text-yellow-600');
+            } else {
+                wordCountHint.classList.remove('text-foodie-teal', 'text-yellow-600');
+                wordCountHint.classList.add('text-red-500');
+            }
+        }
+
+        // Function to show temporary message (replaces alert)
+        function showTemporaryMessage(message, type = 'info') {
+            let color = 'bg-blue-500';
+            let icon = 'ℹ️';
+            if (type === 'error') {
+                color = 'bg-red-500';
+                icon = '❌';
+            } else if (type === 'info') {
+                 color = 'bg-foodie-teal';
+                 icon = '✅';
+            }
+
+
+            const container = document.createElement('div');
+            container.className = `fixed top-4 right-4 z-[100] p-4 rounded-lg text-white font-bold shadow-xl ${color} transition-opacity duration-300 flex items-center gap-2`;
+            container.innerHTML = `<span>${icon}</span> ${message}`;
+            document.body.appendChild(container);
+
+            setTimeout(() => {
+                container.style.opacity = '0';
+                setTimeout(() => container.remove(), 300);
+            }, 3000);
+        }
+
+        // Attach listeners to update preview on input
+        foodNameInput.addEventListener('input', updateCardPreview);
+        goldenQuoteInput.addEventListener('input', updateCardPreview);
+        studentNameInput.addEventListener('input', updateCardPreview);
+        // Also run on load to show initial count
+        window.addEventListener('load', updateCardPreview);
+
+
+        // --- Logic: Charts (Static) ---
+        
+        // Helper for Chart Labels (Splitting long strings)
+        function splitLabel(str, maxLen = 10) {
+            if (str.length <= maxLen) return str;
+            const words = str.split('');
+            const lines = [];
+            let currentLine = '';
+            words.forEach(char => {
+                if ((currentLine + char).length > maxLen) {
+                    lines.push(currentLine);
+                    currentLine = char;
+                } else {
+                    currentLine += char;
+                }
+            });
+            lines.push(currentLine);
+            return lines;
+        }
+
+        function initializeStaticCharts() {
+             // Chart 1: Rubric Radar Chart
+            const ctxRubric = document.getElementById('rubricChart').getContext('2d');
+            new Chart(ctxRubric, {
+                type: 'radar',
+                data: {
+                    labels: RUBRIC_LABELS,
+                    datasets: [{
+                        label: '卓越 (5分標準)',
+                        data: [5, 5, 5],
+                        fill: true,
+                        backgroundColor: 'rgba(17, 94, 89, 0.2)', // Deep Teal
+                        borderColor: 'rgb(17, 94, 89)',
+                        pointBackgroundColor: 'rgb(17, 94, 89)',
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: 'rgb(17, 94, 89)'
+                    }, {
+                        label: '達標 (3分標準)',
+                        data: [3, 3, 3],
+                        fill: true,
+                        backgroundColor: 'rgba(249, 115, 22, 0.2)', // Orange
+                        borderColor: 'rgb(249, 115, 22)',
+                        pointBackgroundColor: 'rgb(249, 115, 22)',
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: 'rgb(249, 115, 22)'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    elements: { line: { borderWidth: 3 } },
+                    scales: {
+                        r: {
+                            angleLines: { display: true },
+                            suggestedMin: 0,
+                            suggestedMax: 5,
+                            ticks: { stepSize: 1, backdropColor: 'transparent' }
+                        }
+                    },
+                    plugins: {
+                        legend: { position: 'bottom' },
+                        tooltip: {
+                            callbacks: {
+                                title: function(tooltipItems) { return tooltipItems[0].label; }
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Chart 2: Scores Bar Chart
+            const ctxScores = document.getElementById('scoresChart').getContext('2d');
+            const scoreLabels = examplesData.map(d => d.title);
+            const scoreValues = examplesData.map(d => d.scores.total);
+            const wrappedScoreLabels = scoreLabels.map(label => splitLabel(label, 6));
+
+            new Chart(ctxScores, {
+                type: 'bar',
+                data: {
+                    labels: wrappedScoreLabels,
+                    datasets: [{
+                        label: '總分 (Total Score)',
+                        data: scoreValues,
+                        backgroundColor: [
+                            'rgba(17, 94, 89, 0.7)',
+                            'rgba(17, 94, 89, 0.7)',
+                            'rgba(17, 94, 89, 0.7)',
+                            'rgba(17, 94, 89, 0.7)'
+                        ],
+                        borderColor: [
+                            'rgb(17, 94, 89)',
+                            'rgb(17, 94, 89)',
+                            'rgb(17, 94, 89)',
+                            'rgb(17, 94, 89)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 16, 
+                            title: { display: true, text: '分數 (滿分15)' }
+                        },
+                        x: {
+                            ticks: { 
+                                callback: function(val, index) {
+                                    return this.getLabelForValue(val);
+                                }
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                             callbacks: {
+                                title: function(tooltipItems) {
+                                    return examplesData[tooltipItems[0].dataIndex].title;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+    </script>
+</body>
+</html>
